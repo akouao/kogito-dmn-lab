@@ -1,1 +1,0 @@
-# kogito-dmn-lab
