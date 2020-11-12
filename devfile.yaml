@@ -1,7 +1,7 @@
+apiVersion: 1.0.0
 metadata:
   name: kogito-dmn
-projects:
-  - name: kogito-dmn-lab
+  - name: kogito-bpmn-lab
     source:
       location: 'https://github.com/akouao/kogito-dmn-lab.git'
       type: git
@@ -10,7 +10,9 @@ components:
     type: chePlugin
   - mountSources: true
     endpoints:
-      - name: web-development
+      - attributes:
+          path: /swagger-ui
+        name: swagger-ui
         port: 8080
     memoryLimit: 4Gi
     type: dockerimage
@@ -24,29 +26,22 @@ components:
           -Xmx4G -Xss128M -XX:MetaspaceSize=1G -XX:MaxMetaspaceSize=2G
           -XX:+CMSClassUnloadingEnabled
         name: MAVEN_OPTS
-apiVersion: 1.0.0
 commands:
-  - name: Run Tests
-    actions:
-      - workdir: '${CHE_PROJECTS_ROOT}'
-        type: exec
-        command: 'mvn verify -f ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started'
-        component: quarkus-tools
   - name: Start Live Coding
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}'
         type: exec
         command: >-
           mvn clean compile quarkus:dev -f
-          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
+          ${CHE_PROJECTS_ROOT}/kogito-bpmn-lab/getting-started
         component: quarkus-tools
   - name: Package Application
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}'
         type: exec
         command: >-
-          mvn package -DuberJar=true -DskipTests -f
-          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
+          mvn package -DuberJar=true -DskipTests=true -f
+          ${CHE_PROJECTS_ROOT}/kogito-bpmn-lab/getting-started
         component: quarkus-tools
   - name: Build Native App
     actions:
@@ -54,21 +49,5 @@ commands:
         type: exec
         command: >-
           mvn package -Pnative -DskipTests -f
-          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
+          ${CHE_PROJECTS_ROOT}/kogito-bpmn-lab/getting-started
         component: quarkus-tools
-  - name: Start Debugger on 5005
-    actions:
-      - referenceContent: |
-          {
-            "version": "0.2.0",
-            "configurations": [
-              {
-                "type": "java",
-                "request": "attach",
-                "name": "Attach to App",
-                "hostName": "localhost",
-                "port": 5005
-              }
-            ]
-          }
-        type: vscode-launch
