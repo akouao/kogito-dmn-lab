@@ -3,7 +3,7 @@ metadata:
 projects:
   - name: kogito-dmn-lab
     source:
-      location: 'https://https://github.com/akouao/kogito-dmn-lab.git'
+      location: 'https://github.com/akouao/kogito-dmn-lab.git'
       type: git
 components:
   - id: redhat/quarkus-java11/latest
