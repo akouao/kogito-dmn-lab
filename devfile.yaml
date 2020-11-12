@@ -30,7 +30,7 @@ commands:
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}'
         type: exec
-        command: 'mvn verify -f ${CHE_PROJECTS_ROOT}/quarkus-lab/getting-started'
+        command: 'mvn verify -f ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started'
         component: quarkus-tools
   - name: Start Live Coding
     actions:
@@ -38,7 +38,7 @@ commands:
         type: exec
         command: >-
           mvn clean compile quarkus:dev -f
-          ${CHE_PROJECTS_ROOT}/quarkus-lab/getting-started
+          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
         component: quarkus-tools
   - name: Package Application
     actions:
@@ -46,7 +46,7 @@ commands:
         type: exec
         command: >-
           mvn package -DuberJar=true -DskipTests -f
-          ${CHE_PROJECTS_ROOT}/quarkus-lab/getting-started
+          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
         component: quarkus-tools
   - name: Build Native App
     actions:
@@ -54,7 +54,7 @@ commands:
         type: exec
         command: >-
           mvn package -Pnative -DskipTests -f
-          ${CHE_PROJECTS_ROOT}/quarkus-lab/getting-started
+          ${CHE_PROJECTS_ROOT}/kogito-dmn-lab/getting-started
         component: quarkus-tools
   - name: Start Debugger on 5005
     actions:
