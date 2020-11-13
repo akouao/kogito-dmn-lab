@@ -1,9 +1,10 @@
 apiVersion: 1.0.0
 metadata:
-  name: kogito-dmn
-  - name: kogito-bpmn-lab
+  name: kogito-bmn
+projects:
+  - name: kogito-bmn
     source:
-      location: 'https://github.com/akouao/kogito-dmn-lab.git'
+      location: 'https://github.com/akouao/kogito-bmn-lab.git'
       type: git
 components:
   - id: redhat/quarkus-java11/latest
