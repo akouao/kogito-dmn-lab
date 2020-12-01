@@ -18,8 +18,7 @@ components:
     memoryLimit: 5Gi
     type: dockerimage
     alias: quarkus-tools
-    image: >-
-      image-registry.openshift-image-registry.svc:5000/openshift/quarkus-stack:2.1
+    image: quay.io/openshiftlabs/quarkus-workshop-stack@sha256:2c74400f3b54650d5e054ea005d5873dd3491ec2d03f6357271ce91530ece73a
     env:
       - value: /home/jboss/.m2
         name: MAVEN_CONFIG
